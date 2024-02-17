@@ -145,6 +145,13 @@ jobs:
          case "${{ github.event.inputs.INCLUDE_REVAMPED_FMRADIO }}" in
           "yes")
             git clone --depth=1 -b mtk https://github.com/iusmac/RevampedFMRadio.git ${PWD}/device/xiaomi/blossom/RevampedFMRadio
+            
+            
+            echo -e "PRODUCT_PACKAGES += \
+                RevampedFMRadio \
+                libmtkfmjni" >> ${PWD}/device/xiaomi/blossom/device.mk
+
+
             echo 'Revamped FMRadio should be included.'
 
           ;;
