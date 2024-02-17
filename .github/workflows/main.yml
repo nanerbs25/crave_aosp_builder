@@ -64,6 +64,15 @@ on:
         options: 
         - 'yes'
         - 'no'
+      INCLUDE_REVAMPED_FMRADIO:
+        description: 'Add RevampedFMRadio'
+        required: false
+        default: 'no'
+        type: choice
+        options:
+        - 'yes'
+        - 'no'
+        
 
 jobs:
   test:
@@ -131,6 +140,20 @@ jobs:
         CRAVE_USERNAME: ${{  secrets.CRAVE_USERNAME  }}
         CRAVE_TOKEN: ${{  secrets.CRAVE_TOKEN  }}
 
+    - name: Include RevampedFMRadio
+      run: |
+         case "${{ github.event.inputs.INCLUDE_REVAMPED_FMRADIO }}" in
+          "yes")
+            git clone --depth=1 -b mtk https://github.com/iusmac/RevampedFMRadio.git ${PWD}/device/xiaomi/blossom/RevampedFMRadio
+            echo 'Revamped FMRadio should be included.'
+
+          ;;
+          "no")
+            You chose no.
+          ;;
+        esac
+      
+        
       # Create a 'crave' job for building.
     - name: Start compilation through 'crave'
       run: |
