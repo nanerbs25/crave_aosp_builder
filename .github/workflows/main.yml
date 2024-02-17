@@ -1,4 +1,4 @@
-#
+2#
 # Copyright (C) 2024 Antonino Scordino
 # Copyright (C) 2024 Souhrud Reddy
 #
@@ -140,6 +140,7 @@ jobs:
         CRAVE_USERNAME: ${{  secrets.CRAVE_USERNAME  }}
         CRAVE_TOKEN: ${{  secrets.CRAVE_TOKEN  }}
 
+      # Include RevampedFMRadio or not.
     - name: Include RevampedFMRadio
       run: |
          case "${{ github.event.inputs.INCLUDE_REVAMPED_FMRADIO }}" in
@@ -156,7 +157,7 @@ jobs:
 
           ;;
           "no")
-            You chose no.
+            echo 'You chose no.'
           ;;
         esac
       
